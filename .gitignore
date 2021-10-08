@@ -1,0 +1,10 @@
+# Python vevn, cache, etc.
+/venv/
+**__pycache__/
+**.pyc
+
+# Mypy
+/.mypy_cache/
+
+# IDE
+/.idea/

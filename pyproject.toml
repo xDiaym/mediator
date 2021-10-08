@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "mediator"
+version = "0.1.0"
+description = "Filter aggressive texts in Russian"
+authors = ["xdiaym <matthew.nekirov@gmail.com>"]
+license = "mit"
+
+[tool.poetry.dependencies]
+python = ">=3.7"
+fastapi = "^0.70.0"
+uvicorn = "^0.15.0"
+dostoevsky = "^0.6.0"
+
+[tool.poetry.dev-dependencies]
+mypy = "^0.910"
+black = "^21.9b0"
+
+[tool.black]
+line-length = 80
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
