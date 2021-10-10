@@ -1,10 +1,18 @@
+import sys
 from typing import List
 
 from fastapi import APIRouter
+from loguru import logger
 
 from mediator.models import Batch, Threshold, Prediction, Model
 from mediator.predictor import Predictor
 
+logger.add(
+    "mediator.log",
+    format="[{level}] {time}: {message}",
+    level="INFO",
+    rotation="32 MB"
+)
 predictor = Predictor()
 router = APIRouter(prefix="/v1")
 
@@ -16,7 +24,7 @@ async def get_model():
 
 @router.post("/model")
 async def set_model(model: Model):
-    print(model)
+    logger.info("model changed to {}", model.kind)
     predictor.set_model(model.kind)
     return {"ok": True}
 
@@ -28,6 +36,7 @@ def get_threshold():
 
 @router.post("/threshold")
 def set_threshold(body: Threshold):
+    logger.info("threshold changed to {}", body.threshold)
     predictor.threshold = body.threshold
     return {"ok": True}
 
